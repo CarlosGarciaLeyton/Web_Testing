@@ -1,0 +1,51 @@
+package conecta;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+import java.sql.ResultSet;
+
+import java.sql.Statement;
+
+public class SofwareConeccion {
+	public SofwareConeccion(){
+	
+try {
+	Class.forName("com.mysql.jdbc.Driver");
+	
+	Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/bd_test?verifyServerCertificate=false&useSSL=true","root", "");
+
+	Statement s = conexion.createStatement();
+	
+	ResultSet rs= s.executeQuery("SELECT* FROM alumno");
+	
+	while (rs.next()) {
+		
+		System.out.println(rs.getString("CARLOS")+"|" + rs.getInt("EDAD"));
+		
+		
+	
+
+}
+
+rs.close();
+
+conexion.close();
+
+}
+
+catch (Exception e)
+
+{
+
+e.printStackTrace();
+
+}
+	}
+
+public static void main(String[] args) {
+		
+	new SofwareConeccion();
+	}
+
+}
